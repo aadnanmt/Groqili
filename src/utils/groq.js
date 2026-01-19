@@ -1,7 +1,7 @@
 import { Groq } from "groq-sdk";
 
-// console.log("CEK ENV:", import.meta.env)
-// console.log("CEK API KEY:", import.meta.env.VITE_GROQ_KEY)
+console.log("CEK ENV:", import.meta.env)
+console.log("CEK API KEY:", import.meta.env.VITE_GROQ_KEY)
 
 const VITE_GROQ_KEY = import.meta.env.VITE_GROQ_KEY;
 

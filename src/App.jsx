@@ -1,12 +1,17 @@
 import "./App.css";
+import { requestToGroqili } from "./utils/groq";
 
 function App() {
-  const handleSubmit = () => {
-    console.log(content.value);
+  const handleSubmit = async () => {
+    const ai = await requestToGroqili(content.value);
   };
+
   return (
     <main className="flex flex-col min-h-[80vh] justify-center items-center">
-      <h1 className="text-indigo-600 text-4xl font-semibold"> Groqili | React.js</h1>
+      <h1 className="text-indigo-600 text-4xl font-bold">
+        {" "}
+        Groqili | React.js
+      </h1>
       <p className="text-white mt-4">Ada yang mau tanyakan?</p>
       <form className="flex flex-col py-4 mt-6 w-80">
         <input

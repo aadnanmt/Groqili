@@ -12,13 +12,13 @@ const groq = new Groq({
 
 export const requestToGroqili = async (content) => {
   const reply = await groq.chat.completions.create({
+    model: "llama-3.1-8b-instant",
     messages: [
       {
         role: "user",
         content,
       },
     ],
-    model: "llama3-8b-8192",
   });
-  return reply;
+  return reply.choices[0].messages;
 };

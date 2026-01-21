@@ -20,5 +20,6 @@ export const requestToGroqili = async (content) => {
       },
     ],
   });
-  return reply.choices[0].messages;
+  console.log("ISI CHOICE[0]:", reply.choices[0]);
+  return reply.choices[0].message.content;
 };

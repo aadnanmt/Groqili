@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "grok-sdk": "^0.0.1-security",
     "groq-sdk": "^0.37.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-syntax-highlighter": "^16.1.0",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {

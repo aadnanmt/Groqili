@@ -7,10 +7,21 @@ import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 function App() {
   const [data, setData] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const groqili = await requestToGroqili(content.value);
-    setData(groqili);
+    setLoading(true);
+
+    try {
+      const groqili = await requestToGroqili(content.value);
+      setData(groqili)
+    } catch (error) {
+      console.error("ERROR:", error)
+      setData("Kamu lagi gabisa hubungi Chatbot-nya!!")
+    } finally {
+      setLoading(false)
+    }
   };
 
   return (
@@ -28,13 +39,15 @@ function App() {
           className="py-3 px-4 rounded-lg w-full text-md text-white bg-gray-800 border border-gray-600 focus:outline-none focus:border-indigo-500"
         />
         <button
+          disabled={loading}
           onClick={handleSubmit}
           id="submit"
           type="submit"
-          className="bg-indigo-600 text-white py-2 px-4 rounded-r-md hover:bg-indigo-700 rounded-lg w-full md:flex-1 md:w-auto"
-        >
-          Kirim
-        </button>
+          className={`bg-indigo-600 text-white py-2 px-4 rounded-lg w-full md:w-auto hover:bg-indigo-700 transition-all shadow-md
+    ${loading ? "opacity-50 cursor-not-allowed" : ""} 
+  `}
+
+        >{loading ? "Mikooorrr..." : "Kirim"}</button>
       </form>
       <div className="max-w-xl">
         {data ? (

@@ -29,6 +29,7 @@
 ├── package.json             # Project dependencies and scripts
 ├── README.md                # Project documentation
 └── vite.config.js           # Vite build tool configuration
+```
 
 ## Installation & Local Development
 

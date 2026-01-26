@@ -10,26 +10,25 @@
 ## Project Structure
 
 ```/
-├── public/
+├── public/                  # Static public assets (e.g., SVG icons)
 │   └── *.svg                  
-├── src/
-│   ├── assets/
-│   │   └── *.svg            
-│   ├── utils/
-│   │   └── groq.js
-│   ├── App.jsx
-│   ├── js/
-│   │   └── main.js             # Frontend logic
-│   ├── lang/
-│   │   └── language.json       # JSON file for English/Indonesian translations
-│   ├── svg/
-│   │   └── iconan.svg          # SVG Icon
-│   └── note.txt                # Secret text file with credits and notes
-├── templates/
-│   └── main.html               # HTML template for the single-page site
-├── LICENSE                     # MIT License file
-├── README.md                   # Project documentation
-```
+├── src/ 
+│   ├── assets/              # Component-specific assets
+│   │   └── *.svg             
+│   ├── utils/               # Utility functions and API wrappers
+│   │   └── groq.js          # Groq SDK configuration
+│   ├── App.css              # Main component styles
+│   ├── App.jsx              # Root component logic
+│   ├── index.css            # Global styles
+│   └── main.jsx             # Application entry point
+├── .env.example             # Template for environment variables
+├── .gitignore               # Files excluded from Git
+├── eslint.config.js         # Linting configuration
+├── index.html               # HTML template
+├── LICENSE                  # MIT License
+├── package.json             # Project dependencies and scripts
+├── README.md                # Project documentation
+└── vite.config.js           # Vite build tool configuration
 
 ## Installation & Local Development
 

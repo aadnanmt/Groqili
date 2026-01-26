@@ -1,9 +1,9 @@
-# Groqili
+# Groqili | React
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Made%20with-Flask-black?style=for-the-badge&logo=flask" alt="Flask">
-  <img src="https://img.shields.io/badge/Frontend-HTML%20%2F%20CSS%20%2F%20JS-blue?style=for-the-badge" alt="Frontend">
-  <img src="https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge&logo=vercel" alt="Vercel">
+  <img src="https://img.shields.io/badge/Made%20with-React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React">
+  <img src="https://img.shields.io/badge/Bundler-Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite">
+  <img src="https://img.shields.io/badge/AI-Groq-f55036?style=for-the-badge&logo=groq&logoColor=white" alt="Groq">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
 </p>
 

@@ -9,12 +9,14 @@ function App() {
 
   const [loading, setLoading] = useState(false);
 
+  const [content, setContent] = useState("")
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const groqili = await requestToGroqili(content.value);
+      const groqili = await requestToGroqili(content);
       setData(groqili)
     } catch (error) {
       console.error("ERROR:", error)
@@ -34,7 +36,8 @@ function App() {
       <form className="flex flex-col py-4 mt-6 w-full gap-6">
         <input
           type="text"
-          id="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
           placeholder="Ketik pertanyaanmu disini..."
           className="py-3 px-4 rounded-lg w-full text-md text-white bg-gray-800 border border-gray-600 focus:outline-none focus:border-indigo-500"
         />
@@ -47,7 +50,7 @@ function App() {
     ${loading ? "opacity-50 cursor-not-allowed" : ""} 
   `}
 
-        >{loading ? "Mikooorrr..." : "Kirim"}</button>
+        >{loading ? "Sedang Mikiiirrr..." : "Kirim"}</button>
       </form>
       <div className="max-w-xl">
         {data ? (

@@ -13,29 +13,34 @@ if (!VITE_GROQ_KEY) {
 
 const groq = new Groq({
   apiKey: VITE_GROQ_KEY,
-  dangerouslyAllowBrowser: false,  // ganti ke false saat production bgtu jugak sebaliknya
+  dangerouslyAllowBrowser: false,  // change to true if yu want to allow browser usage
 });
 
 export const requestToGroqili = async (content) => {
+  // Validation input
+  if (!content || typeof content !== "string") {
+    throw new Error("Invalid content: must be non-empty string");
+  }
+
+  const trimmedContent = content.trim();
+  
+  if (trimmedContent.length === 0) {
+    throw new Error("Content cannot be empty");
+  }
+  
+  if (trimmedContent.length > 5000) {  // set reasonable limit
+    throw new Error("Content exceeds maximum length (5000 chars)");
+  }
+
   const reply = await groq.chat.completions.create({
-    model: "llama-3.1-8b-instant", // contoh model, sesuaikan dengan kebutuhan aja
+    model: "llama-3.1-8b-instant",
     messages: [
       {
         role: "user",
-        content,
+        content: trimmedContent,
       },
     ],
   });
-
-  if (!reply.choices || !reply.choices[0]) {
-    throw new Error("No response from Groq API");
-  }
-
-  if (!reply.choices[0].message) {
-    throw new Error(
-      `Invalid response structure: ${JSON.stringify(reply.choices[0])}`
-    );
-  }
-
+  
   return reply.choices[0].message.content;
 };

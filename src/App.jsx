@@ -9,20 +9,27 @@ function App() {
 
   const [loading, setLoading] = useState(false);
 
-  const [content, setContent] = useState("")
+  const [content, setContent] = useState("");
+
+  const [lastRequestTime, setLastRequestTime] = useState(0);
+  const intervalRequest = 1000; // 1 second
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (loading) return;
+
     setLoading(true);
 
     try {
       const groqili = await requestToGroqili(content);
-      setData(groqili)
+      setData(groqili);
     } catch (error) {
-      console.error("ERROR:", error)
-      setData("Kamu lagi gabisa hubungi Chatbot-nya!!")
+      console.error("ERROR:", error);
+      setData("Kamu lagi gabisa hubungi Chatbot-nya!!");
     } finally {
-      setLoading(false)
+      setLoading(false);
+      setLastRequestTime(Date.now());
     }
   };
 

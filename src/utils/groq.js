@@ -26,6 +26,16 @@ export const requestToGroqili = async (content) => {
       },
     ],
   });
-  console.log("ISI CHOICE[0]:", reply.choices[0]);
+
+  if (!reply.choices || !reply.choices[0]) {
+    throw new Error("No response from Groq API");
+  }
+
+  if (!reply.choices[0].message) {
+    throw new Error(
+      `Invalid response structure: ${JSON.stringify(reply.choices[0])}`
+    );
+  }
+
   return reply.choices[0].message.content;
 };

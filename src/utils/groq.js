@@ -52,3 +52,8 @@ export const requestToGroqili = async (content) => {
     clearTimeout(timeoutId);
   }
 };
+
+// remove console.log in production mode
+if (process.env.NODE_ENV === "development") {
+  console.debug("API response receive from Groq sdk");
+}

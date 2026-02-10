@@ -13,7 +13,7 @@ if (!VITE_GROQ_KEY) {
 
 const groq = new Groq({
   apiKey: VITE_GROQ_KEY,
-  dangerouslyAllowBrowser: false,  // change to true if yu want to allow browser usage
+  dangerouslyAllowBrowser: true,  // change to true if yu want to allow browser usage
 });
 
 const GROQ_TIMEOUT = 30000; // 30 second

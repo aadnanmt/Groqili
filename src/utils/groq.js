@@ -16,6 +16,8 @@ const groq = new Groq({
   dangerouslyAllowBrowser: false,  // change to true if yu want to allow browser usage
 });
 
+const GROQ_TIMEOUT = 30000; // 30 second
+
 export const requestToGroqili = async (content) => {
   // Validation input
   if (!content || typeof content !== "string") {
@@ -32,15 +34,21 @@ export const requestToGroqili = async (content) => {
     throw new Error("Content exceeds maximum length (5000 chars)");
   }
 
-  const reply = await groq.chat.completions.create({
-    model: "llama-3.1-8b-instant",
-    messages: [
-      {
-        role: "user",
-        content: trimmedContent,
-      },
-    ],
-  });
-  
-  return reply.choices[0].message.content;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), GROQ_TIMEOUT);
+
+  try {
+    const reply = await groq.chat.completions.create({
+      model: "llama-3.1-8b-instant",
+      messages: [
+        {
+          role: "user",
+          content: trimmedContent,
+        },
+      ],
+    });
+    return reply.choices[0].message.content;
+  } finally {
+    clearTimeout(timeoutId);
+  }
 };

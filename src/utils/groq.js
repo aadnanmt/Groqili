@@ -5,6 +5,12 @@ import { Groq } from "groq-sdk";
 
 const VITE_GROQ_KEY = import.meta.env.VITE_GROQ_KEY;
 
+if (!VITE_GROQ_KEY) {
+  throw new Error(
+    "VITE_GROQ_KEY not defined. Chek env file."
+  );
+}
+
 const groq = new Groq({
   apiKey: VITE_GROQ_KEY,
   dangerouslyAllowBrowser: false,  // ganti ke false saat production bgtu jugak sebaliknya
@@ -12,7 +18,7 @@ const groq = new Groq({
 
 export const requestToGroqili = async (content) => {
   const reply = await groq.chat.completions.create({
-    model: "llama-3.1-8b-instant",
+    model: "llama-3.1-8b-instant", // contoh model, sesuaikan dengan kebutuhan aja
     messages: [
       {
         role: "user",

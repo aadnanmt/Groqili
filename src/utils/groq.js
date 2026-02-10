@@ -7,7 +7,7 @@ const VITE_GROQ_KEY = import.meta.env.VITE_GROQ_KEY;
 
 const groq = new Groq({
   apiKey: VITE_GROQ_KEY,
-  dangerouslyAllowBrowser: true,
+  dangerouslyAllowBrowser: false,  // ganti ke false saat production bgtu jugak sebaliknya
 });
 
 export const requestToGroqili = async (content) => {

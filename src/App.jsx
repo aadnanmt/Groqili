@@ -26,6 +26,10 @@ function App() {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [message]);
+
   const [lastRequestTime, setLastRequestTime] = useState(0);
   const intervalRequest = 1000; // 1 second
 

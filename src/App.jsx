@@ -10,13 +10,13 @@ function App() {
   const [data, setData] = useState("");
 
   const [message, setMessage] = useState([
-  {
+    {
       id: 1,
-      role: "assistant", 
+      role: "assistant",
       content: "Hallo! Saya Groqili. Mau coding fitur apa hari ini?", // greeting message
     },
   ]);
-  
+
   // state input user
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
@@ -40,10 +40,10 @@ function App() {
   // handle form submt
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if  (content.trim() || loading) {
+    if (!content.trim() || loading) {
       return;
     }
-    
+
     const userMsg = {
       id: message.length + 1,
       role: "user",
@@ -61,15 +61,15 @@ function App() {
     try {
       // calling API Groq
       const replyContent = await requestToGroqili(content);
-      
+
       // save bot reply
       const botMsg = {
         id: Date.now() + 1,
         role: "assistant",
         content: replyContent
       };
-      setMessages((prev) => [...prev, botMsg]);
-      
+      setMessage((prev) => [...prev, botMsg]);
+
     } catch (error) {
       console.error("Error Groq:", error);
       // show error message in chat
@@ -88,20 +88,20 @@ function App() {
   return (
     // main container
     <main className="flex flex-col h-screen bg-slate-950 text-slate-100 font-sans overflow-hidden">
-      
+
       {/* header */}
       <header className="flex-none p-4 border-b border-white/5 bg-slate-950/80 backdrop-blur-xl z-10">
         <div className="max-w-3xl mx-auto flex items-center gap-3">
           {/* logo | soon*/}
-            <h1 className="text-lg font-bold tracking-tight">Groqili AI</h1>
-            <p className="text-xs text-slate-500">Powered by Llama 3 & Groq</p>
-          </div>
+          <h1 className="text-lg font-bold tracking-tight">Groqili AI</h1>
+          <p className="text-xs text-slate-500">Powered by Llama 3 & Groq</p>
+        </div>
       </header>
 
       {/* chat area  */}
       <section className="flex-1 overflow-y-auto scroll-smooth p-4 md:p-6 custom-scrollbar">
         <div className="max-w-3xl mx-auto space-y-6">
-          
+
           {/* loop on memory */}
           {message.map((msg) => (
             <ChatMessage key={msg.id} message={msg} />
@@ -109,13 +109,13 @@ function App() {
 
           {/* indiccator loading */}
           {loading && (
-             <div className="flex justify-start animate-pulse">
-               <div className="bg-slate-800/50 px-4 py-2 rounded-2xl rounded-bl-sm text-slate-400 text-sm border border-white/5">
-                 sedang mikir....
-               </div>
-             </div>
+            <div className="flex justify-start animate-pulse">
+              <div className="bg-slate-800/50 px-4 py-2 rounded-2xl rounded-bl-sm text-slate-400 text-sm border border-white/5">
+                sedang mikir....
+              </div>
+            </div>
           )}
-          
+
           {/* element for target scroll */}
           <div ref={messageEndRef} className="h-4" />
         </div>
@@ -125,7 +125,7 @@ function App() {
       <footer className="flex-none p-4 bg-slate-950 border-t border-white/5">
         <div className="max-w-3xl mx-auto">
           <form onSubmit={handleSubmit} className="relative flex items-center">
-            
+
             <input
               type="text"
               value={content}
@@ -134,7 +134,7 @@ function App() {
               disabled={loading}
               className="w-full bg-slate-900 border border-slate-800 text-slate-200 placeholder-slate-600 rounded-xl py-4 pl-5 pr-14 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all shadow-inner"
             />
-            
+
             {/* button send message */}
             <button
               type="submit"
@@ -147,7 +147,7 @@ function App() {
               </svg>
             </button>
           </form>
-          
+
           <p className="text-center text-[10px] text-slate-700 mt-3">
             AI dapat membuat kesalahan.
           </p>

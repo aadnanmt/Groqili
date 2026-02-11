@@ -103,7 +103,7 @@ function App() {
         <div className="max-w-3xl mx-auto space-y-6">
           
           {/* loop on memory */}
-          {messages.map((msg) => (
+          {message.map((msg) => (
             <ChatMessage key={msg.id} message={msg} />
           ))}
 
@@ -117,7 +117,7 @@ function App() {
           )}
           
           {/* element for target scroll */}
-          <div ref={messagesEndRef} className="h-4" />
+          <div ref={messageEndRef} className="h-4" />
         </div>
       </section>
 

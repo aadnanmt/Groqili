@@ -1,15 +1,26 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { requestToGroqili } from "./utils/groq";
 import { Light as SyntaxHighlight } from "react-syntax-highlighter";
+import { ChatMessage } from "./components/ChatMessage";
 import "./App.css";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 function App() {
+
   const [data, setData] = useState("");
 
+  const [message, setMessage] = useState([
+  {
+      id: 1,
+      role: "assistant", 
+      content: "Hallo! Saya Groqili. Mau coding fitur apa hari ini?",
+    },
+  ]);
+  
+  const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const [content, setContent] = useState("");
+  const messageEndRef = useRef(null);
 
   const [lastRequestTime, setLastRequestTime] = useState(0);
   const intervalRequest = 1000; // 1 second
